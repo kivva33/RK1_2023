@@ -1,6 +1,17 @@
 #include <iostream>
 #include <vector>
 
+//задача 1
+class WorkWithFile {
+private :
+    char* dataOfFile;
+    void readFromFile(const char* fileName);
+    void prepareTestFile(const char* fileName);
+public :
+    WorkWithFile();
+    ~WorkWithFile();
+    void writeStatInfoToFile(const char* outFile);
+};
 //задача 2
 char* convertDecToBin(int number);
 void writeToFile(const char* fileName, const char* strNum);

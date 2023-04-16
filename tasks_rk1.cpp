@@ -3,6 +3,43 @@
 #include <vector>
 #include <iostream>
 const int N = 255;
+//задача 1
+WorkWithFile::WorkWithFile(){
+    dataOfFile = new char[N];
+}
+WorkWithFile::~WorkWithFile() {
+    delete[] dataOfFile;
+}
+void WorkWithFile::writeStatInfoToFile(const char* outFile){
+    readFromFile("sourceFile_task1");
+    prepareTestFile("result_sourceFile_task1");
+}
+void WorkWithFile::readFromFile(const char* fileName){
+    FILE* fin = fopen(fileName, "r");
+    fscanf(fin, "%s", dataOfFile);
+    fclose(fin);
+}
+void WorkWithFile::prepareTestFile(const char* fileName){
+    int lenFile = strlen(dataOfFile);
+    int* size = new int[lenFile];
+    char* simvol = new char[lenFile];
+    int count = 0;
+    simvol[count] = '\0';
+    for (int i = 0; i < lenFile; i++) {
+        if (strchr(simvol, dataOfFile[i])) {
+            simvol[strchr(simvol, dataOfFile[i]) - simvol]++;
+            continue;
+        }
+        simvol[count] = dataOfFile[i];
+        size[count] = 1;
+        simvol[++count] = '\0';
+    }
+    FILE* fout = fopen(fileName, "r");
+    for (int i = 0; i < count; i++) {
+        fprintf(fout, "%c\t%d", simvol[i], size[i]);
+    }
+    fclose(fout);
+}
 
 //задача 2
 char* convertDecToBin(int number) {
