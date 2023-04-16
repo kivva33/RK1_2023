@@ -12,6 +12,7 @@ public :
     ~WorkWithFile();
     void writeStatInfoToFile(const char* outFile);
 };
+void task_1();
 //задача 2
 char* convertDecToBin(int number);
 void writeToFile(const char* fileName, const char* strNum);

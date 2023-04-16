@@ -27,20 +27,25 @@ void WorkWithFile::prepareTestFile(const char* fileName){
     simvol[count] = '\0';
     for (int i = 0; i < lenFile; i++) {
         if (strchr(simvol, dataOfFile[i])) {
-            simvol[strchr(simvol, dataOfFile[i]) - simvol]++;
+            size[strchr(simvol, dataOfFile[i]) - simvol]++;
             continue;
         }
         simvol[count] = dataOfFile[i];
         size[count] = 1;
         simvol[++count] = '\0';
     }
-    FILE* fout = fopen(fileName, "r");
+    FILE* fout = fopen(fileName, "w");
     for (int i = 0; i < count; i++) {
-        fprintf(fout, "%c\t%d", simvol[i], size[i]);
+        fprintf(fout, "%c\t%d\n", simvol[i], size[i]);
     }
     fclose(fout);
 }
-
+void task_1(){
+    WorkWithFile* a;
+    a = new WorkWithFile;
+    a->writeStatInfoToFile("result_sourceFile_task1");
+    delete a;
+}
 //задача 2
 char* convertDecToBin(int number) {
     int* numberDemoBin = new int[64];
