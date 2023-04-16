@@ -1,7 +1,5 @@
 #include "tasks_rk1.h"
-#include <cstring>
-#include <vector>
-#include <iostream>
+
 const int N = 255;
 //задача 1
 WorkWithFile::WorkWithFile(){
@@ -260,3 +258,5 @@ void task_7(){
     p.writeToFileFromHead();
     p.writeToFileFromTail();
 }
+//задача 8
+
