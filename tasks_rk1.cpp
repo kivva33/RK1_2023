@@ -34,7 +34,7 @@ void WorkWithFile::prepareTestFile(const char* fileName){
     }
     FILE* fout = fopen(fileName, "w");
     for (int i = 0; i < count; i++) {
-        fprintf(fout, "%c\t%d\n", simvol[i], size[i]);
+        fprintf(fout, "%c\t%f\n", simvol[i], (float)size[i]/lenFile);
     }
     fclose(fout);
 }
@@ -74,7 +74,7 @@ void writeToFile(const char* fileName, const char* strNum) {
 
 }
 void task_2(){
-    writeToFile("result_task2", convertDecToBin(9));
+    writeToFile("result_task2", convertDecToBin(-9));
 }
 //задача 3
 char* convertBinToHex(const char* binNum){

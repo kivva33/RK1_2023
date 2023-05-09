@@ -62,6 +62,9 @@ public:
 void task_6();
 //задача 7
 void task_7();
+
+
+
 //задача 8
 //описать list (двусвязный список, в котором храняться оценки)
 class StudentInfo {
@@ -69,8 +72,8 @@ private :
     std::tuple<std::string /*фамилия*/, std::string /*имя*/, char* /*№ студ билета*/> infoStudent;
 
 
-    std::map<std::string/*название предмета*/, std::pair<std::list<int> /*список оценок*/,
-    float /*средняя оценка*/>> subjMark;
+   // std::map<std::string/*название предмета*/, std::pair<std::list<int> /*список оценок*/,
+   // float /*средняя оценка*/>> subjMark;
 
 
 public :
