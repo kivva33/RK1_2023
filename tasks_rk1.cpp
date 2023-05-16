@@ -48,10 +48,12 @@ void task_1(){
 char* convertDecToBin(int number) {
     int* numberDemoBin = new int[64];
     int count = 0;
+    if(number < 0)
+        number *= -1;
     numberDemoBin[count] = '\0';
     for (; number != 0; count++) {
         numberDemoBin[count] = (number & 1);
-        number = number >> 1;
+        number = number >> 1;//на отрицательных числах не работает побитовый сдвиг 
         numberDemoBin[count + 1] = '\0';
     }
     char* numberToBin = new char[64];
