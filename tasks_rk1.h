@@ -3,7 +3,8 @@
 #include <map>
 #include <cstring>
 #include <iostream>
-
+#include <list>
+#pragma region
 //задача 1
 class WorkWithFile {
 private :
@@ -63,17 +64,14 @@ void task_6();
 //задача 7
 void task_7();
 
-
+#pragma endregion
 
 //задача 8
-//описать list (двусвязный список, в котором храняться оценки)
 class StudentInfo {
 private :
     std::tuple<std::string /*фамилия*/, std::string /*имя*/, char* /*№ студ билета*/> infoStudent;
 
-
-   // std::map<std::string/*название предмета*/, std::pair<std::list<int> /*список оценок*/,
-   // float /*средняя оценка*/>> subjMark;
+   std::map<std::string/*название предмета*/, std::pair<std::list<int> /*список оценок*/, float /*средняя оценка*/>> subjMark;
 
 
 public :
@@ -82,8 +80,6 @@ public :
                         mark -- оценка,
                         addSubj - если нет такой дисциплины, то добавить, если addSubj == true
         output		:	0 - оценка добавлена, 1 - нет такой дисциплины, 2 - была добавлена новая дисциплина
-        author		:
-        date		:
     */
     int addMark(const std::string& subjName, int mark, bool addSubj = false);
 
@@ -127,3 +123,5 @@ public :
     */
     void writeAllInfoToFile();
 };
+void task_8();
+

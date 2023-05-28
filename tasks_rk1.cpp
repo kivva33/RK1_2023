@@ -1,5 +1,5 @@
 #include "tasks_rk1.h"
-
+#pragma region
 const int N = 255;
 //задача 1
 WorkWithFile::WorkWithFile(){
@@ -260,5 +260,78 @@ void task_7(){
     p.writeToFileFromHead();
     p.writeToFileFromTail();
 }
+#pragma endregion
 //задача 8
 
+/*std::tuple<std::string фамилия, std::string имя, char* № студ билета> infoStudent;
+
+std::map<std::string название предмета, std::pair<std::list<int> список оценок, float средняя оценка>> subjMark;*/
+
+int StudentInfo::addMark(const std::string& subjName, int mark, bool addSubj){
+    if(addSubj && subjMark.find(subjName) == subjMark.end()){
+        this->addSubj(subjName);
+        return 2;
+    }
+    if(subjMark.find(subjName) == subjMark.end())
+        return 1;
+    subjMark.find(subjName)->second.first.push_back(mark);
+    subjMark.find(subjName)->second.second = getAverMark(subjName);
+    return 0;
+}
+
+float StudentInfo::getAverMark(const std::string& subjName){
+    int sum = 0;
+    for(auto it : subjMark.find(subjName)->second.first)
+        sum += it;
+    return (sum / subjMark.find(subjName)->second.first.size());
+}
+
+int StudentInfo::addSubj(const std::string& subjName){
+    if(subjMark.find(subjName) == subjMark.end()){
+        std::list<int> p = {};
+        std::pair<std::list<int>, float> P = {p, 0};
+        subjMark.insert(std::pair<std::string, std::pair<std::list<int>, float>>(subjName, P));
+        return 0;
+    }
+    return 1;
+}
+/*	desription	:	вывести информацию о студенте, его оценках по предметам в следующем формате
+                      [Student info]\n\t[subj] : [avers,...] -- [averMark]\n
+      input		:	writeFile - true = записать информацию в файл
+                      writeFile - false = вывести информацию в консоль
+      output		:
+      author		:
+      date		:
+      std::map<std::stringназвание предмета, std::pair<std::list<int> список оценок, float средняя оценка>> subjMark;
+
+*/
+void StudentInfo::printInfoStudent(bool writeFile){
+    if(writeFile){
+        writeAllInfoToFile();
+        return;
+    }
+    for(auto it : subjMark){
+        printf("\n\t");
+        it.first;//как вывести string
+        for(auto it_list : it.second.first){
+            printf("%d ", it_list);
+        }
+        printf("]%f\n", it.second.second);
+    }
+}
+//result_task1
+void StudentInfo::writeAllInfoToFile(){
+    FILE* fout = fopen("result_task1", "w");
+    for(auto it : subjMark){
+        fprintf(fout, "\n\t");
+        it.first;//как вывести string
+        for(auto it_list : it.second.first){
+            fprintf(fout, "%d ", it_list);
+        }
+       fprintf(fout, "]%f\n", it.second.second);
+    }
+}
+
+void task_8(){
+
+}
